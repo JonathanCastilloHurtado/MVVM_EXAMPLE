@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-
+<!-- Esta parte es la que realiza las subscripciones ya sean eventos o lectura de variables-->
     <data>
-
+<!--El name de nuestras etiquetas variable sera el que se tomara para referencia la propiedad o variable a utilizar-->
         <variable
             name="user"
             type="com.example.mvvm_example.User" />
+
         <variable
             name="handler"
             type="com.example.mvvm_example.EventHandler" />
@@ -16,6 +17,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <!--El texto que el textView obtiene es el del objeto directamente y no el seteado de  TextView.setText()-->
         <TextView
             android:id="@+id/mNombre"
             android:text="@{user.name, default=Name}"
@@ -23,7 +25,8 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:textSize="19dp" />
-
+<!--al poner el evento directo en el boton, se obtiene el estado ACTUAL de la variable a la cual estamos suscritos
+    de esta manera los cambios que se ven reflejados son los que sufre el objeto y no los que obtendriamos con un TextView.setText()-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
