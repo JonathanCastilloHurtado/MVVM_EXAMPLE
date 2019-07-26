@@ -1,14 +1,19 @@
 package com.example.mvvm_example;
 
-public class User {
+import androidx.databinding.ObservableField;
 
-    public String getName() {
+import java.util.Observable;
+
+public class User extends Observable {
+
+    public ObservableField<String> getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(ObservableField<String> name) {
+
         this.name = name;
     }
 
-    private String name;
+    public ObservableField<String> name;
 }
