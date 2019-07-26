@@ -7,7 +7,9 @@ public class model {
     //Al este metodo se un return y no estar conectado con el VM de manera correcta,
     //durante el tiempo de jecucion, el SO de android no espera a contar los 5 segundos,
     //apresurando al sistema a dar la respuesta inicial de la variable boleana mediante el return.
-    public boolean getBook(String query) {
+    //TODO wee aqui es donde een lugar de manejar la respueta como return boolean, creemos una
+    //TODO variable observable la cual el VM observara su cambio de estado
+    public boolean getBook() {
         final Boolean[] isStock = {false};
         //este handler simulara el tiempo de respuesta de la busqueda en la base de datos
         Handler handler = new Handler();

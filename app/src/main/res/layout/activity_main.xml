@@ -5,7 +5,7 @@
 <!--El name de nuestras etiquetas variable sera el que se tomara para referencia la propiedad o variable a utilizar-->
         <variable
             name="userMVVM"
-            type="com.example.mvvm_example.UserMVVM" />
+            type="com.example.mvvm_example.UserVM" />
     </data>
 
     <LinearLayout
@@ -25,7 +25,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MVVM"
+            android:text="Start"
             android:onClick="@{() -> userMVVM.onButtonClick()}"/>
 
         <Button
@@ -33,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="NULL"
+            android:visibility="gone"
           />
     </LinearLayout>
 </layout>

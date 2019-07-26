@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //El binding correspondiente sera el camel case dela activity misma que tiene las suscripciones.
     ActivityMainBinding binding;
     //creamos un objeto GLOBAL ya que las suscripciones estaran ligadas con la direccion de memoria de este objeto en especifico.
-    UserMVVM usuario = new UserMVVM();
+    UserVM usuario = new UserVM();
     //creamos la variable String observable la cual mandaremos a travez del setter para modificar activamente la vista.
     ObservableField<String> name=new ObservableField<>();
 
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //a nuestros variables (variables a los cuales estan suscritos nuestras vistas) les asiganamos el objeto con el que estos trabajaran (objetos a los cuales se suuscribiran)
         binding.setUserMVVM(usuario);
+
         //este boton solo lo utilizaremos para comprobar que la vista esta tomando sus variables directo del objeto y no a partir de algun view.setText()
         btnCambiaVariable = findViewById(R.id.button);
         btnCambiaVariable.setOnClickListener(this);
