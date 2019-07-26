@@ -4,12 +4,8 @@
     <data>
 <!--El name de nuestras etiquetas variable sera el que se tomara para referencia la propiedad o variable a utilizar-->
         <variable
-            name="user"
-            type="com.example.mvvm_example.User" />
-
-        <variable
-            name="handler"
-            type="com.example.mvvm_example.EventHandler" />
+            name="userMVVM"
+            type="com.example.mvvm_example.UserMVVM" />
     </data>
 
     <LinearLayout
@@ -19,7 +15,7 @@
 
         <!--El texto que el textView obtiene es el del objeto directamente y no el seteado de  TextView.setText()-->
         <TextView
-            android:text="@{user.name, default=Name}"
+            android:text="@{userMVVM.name, default=Name}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
@@ -29,14 +25,14 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Mostrar dato actual"
-            android:onClick="@{() -> handler.onButtonClick(user.name)}"/>
+            android:text="MVVM"
+            android:onClick="@{() -> userMVVM.onButtonClick()}"/>
 
         <Button
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cambia variable"
+            android:text="NULL"
           />
     </LinearLayout>
 </layout>
