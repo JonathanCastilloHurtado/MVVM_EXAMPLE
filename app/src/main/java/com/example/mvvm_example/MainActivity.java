@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ActivityMainBinding binding;
     //creamos un objeto GLOBAL ya que las suscripciones estaran ligadas con la direccion de memoria de este objeto en especifico.
     UserVM usuario = new UserVM();
-    //creamos la variable String observable la cual mandaremos a travez del setter para modificar activamente la vista.
+    //creamos la variable String observable la cual mandaremos a través del setter para modificar activamente la vista.
     ObservableField<String> name=new ObservableField<>();
 
     @Override
