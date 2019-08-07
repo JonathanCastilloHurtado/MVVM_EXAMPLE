@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+    //add to use data binding
     dataBinding {
         enabled = true
     }
@@ -29,4 +30,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 }
