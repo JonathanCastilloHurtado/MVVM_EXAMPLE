@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ObservableField;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     UserVM usuario = new UserVM();
     //creamos la variable String observable la cual mandaremos a través del setter para modificar activamente la vista.
     ObservableField<String> name=new ObservableField<>();
-
+    ProgressDialog progressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //este boton solo lo utilizaremos para comprobar que la vista esta tomando sus variables directo del objeto y no a partir de algun view.setText()
         btnCambiaVariable = findViewById(R.id.button);
+
         btnCambiaVariable.setOnClickListener(this);
+        progressDialog= new ProgressDialog(this);
     }
 
     @Override

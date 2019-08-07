@@ -35,5 +35,10 @@
             android:text="NULL"
             android:visibility="gone"
           />
+        <ProgressBar
+            android:visibility="@{userMVVM.isVisible}"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"/>
     </LinearLayout>
 </layout>
