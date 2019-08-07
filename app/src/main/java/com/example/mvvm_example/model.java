@@ -18,6 +18,8 @@ import java.util.Random;
 
 public class model  extends AsyncTask<Object, String, String> {
 
+	private String reqURL;
+	private OnResult callback;
 	///https://proandroiddev.com/mvvm-architecture-viewmodel-and-livedata-part-1-604f50cda1
 
 	// Manda a llamar tu petición y lo regresas con un callback, si usas como en el ejemplo
@@ -59,8 +61,7 @@ public class model  extends AsyncTask<Object, String, String> {
 
 		void onError(String error);
 	}
-	String reqURL;
-	OnResult callback;
+
 	public void makeServiceCall() {
 		String response = null;
 		try {

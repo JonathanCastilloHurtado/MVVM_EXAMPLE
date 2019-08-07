@@ -51,6 +51,7 @@ public class UserVM extends Observable {
 
 			@Override
 			public void onError(String error) {
+				name.set(error);
 				isVisible.set(View.GONE);
 				setIsVisible(isVisible);
 			}
