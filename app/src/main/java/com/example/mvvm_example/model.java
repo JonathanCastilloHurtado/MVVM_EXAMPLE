@@ -63,14 +63,34 @@ public class model  extends AsyncTask<Object, String, String> {
 	}
 
 	public void makeServiceCall() {
-		String response = null;
+		String response;
 		try {
 			URL url = new URL(reqURL);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setRequestMethod("GET");
 			//read the response
 			InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-			response = convertStreamToString(in);
+
+			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+			StringBuilder stringBuilder = new StringBuilder();
+			String line;
+			try {
+				while ((line = reader.readLine()) != null) {
+					stringBuilder.append(line).append('\n');
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+                callback.onError(e+"");
+			} finally {
+				try {
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+                    callback.onError(e+"");
+				}
+			}
+
+			response = stringBuilder.toString();
 			callback.onSuccess(response);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -82,25 +102,5 @@ public class model  extends AsyncTask<Object, String, String> {
 			e.printStackTrace();
 			callback.onError(e+"");
 		}
-	}
-
-	public String convertStreamToString(InputStream in) {
-		BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-		StringBuilder stringBuilder = new StringBuilder();
-		String line;
-		try {
-			while ((line = reader.readLine()) != null) {
-				stringBuilder.append(line).append('\n');
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				in.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return stringBuilder.toString();
 	}
 }
