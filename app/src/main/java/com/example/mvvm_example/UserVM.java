@@ -10,7 +10,7 @@ import java.util.Observable;
 public class UserVM extends Observable {
 
 	public ObservableField<String> name;
-	private model model;
+	//private model model;
 
 	public ObservableInt getIsVisible() {
 		return isVisible;
@@ -27,7 +27,7 @@ public class UserVM extends Observable {
 	}
 
 	public UserVM() {
-		model = new model();
+		//model = new model();
 		isVisible= new ObservableInt(View.GONE);
 	}
 
@@ -39,7 +39,8 @@ public class UserVM extends Observable {
 	public void onButtonClick() {
 		isVisible.set(View.VISIBLE);
 		setIsVisible(isVisible);
-		model.getBook(new model.OnResult() {
+		//se cambia por new model ya que como el model contiene un hilo, al intentar dispararlo mas de una vez crasheara.
+		new model().execute("http://cardfindercdmx.com/personal/get_book.php",new model.OnResult() {
 
 			@Override
 			public void onSuccess(String result) {
@@ -49,7 +50,7 @@ public class UserVM extends Observable {
 			}
 
 			@Override
-			public void onError() {
+			public void onError(String error) {
 				isVisible.set(View.GONE);
 				setIsVisible(isVisible);
 			}
