@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
+
         <variable
             name="viewModel"
             type="com.example.mvvm_example.UserVM" />
@@ -12,21 +14,21 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="@{viewModel.response}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="19dp" />
+            android:text="@{viewModel.response}"
+            android:textColor="@color/colorPrimaryDark" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.btnText}"
-            android:onClick="@{() -> viewModel.onButtonClick()}"/>
+            android:onClick="@{() -> viewModel.onButtonClick()}"
+            android:text="@{viewModel.btnText}" />
 
         <ProgressBar
-            android:visibility="@{viewModel.isVisible}"
-            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.isVisible}" />
     </LinearLayout>
 </layout>
