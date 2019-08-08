@@ -1,9 +1,6 @@
 package com.example.mvvm_example;
 
 import android.os.AsyncTask;
-import android.os.Handler;
-
-import org.json.JSONException;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -14,38 +11,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
-import java.util.Random;
 
 public class model  extends AsyncTask<Object, String, String> {
 
 	private String reqURL;
 	private OnResult callback;
-	///https://proandroiddev.com/mvvm-architecture-viewmodel-and-livedata-part-1-604f50cda1
-
-	// Manda a llamar tu petición y lo regresas con un callback, si usas como en el ejemplo
-	// Retrofit entonces cuando haces la petición hay un callback de respuesta
-	public void getBook(final OnResult callback) {
-
-	new Handler().postDelayed(new Runnable() {
-
-			public void run() {
-				//una vez que realmente encontro el resultado
-				callback.onSuccess(getRandomText());
-			}
-		}, 5000);
-
-	}
-
-	private String getRandomText() {
-		char[] chars = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-		StringBuilder sb = new StringBuilder();
-		Random random = new Random();
-		for (int i = 0; i < 6; i++) {
-			char c = chars[random.nextInt(chars.length)];
-			sb.append(c);
-		}
-		return sb.toString();
-	}
 
 	@Override
 	protected String doInBackground(Object... objects) {
@@ -55,22 +25,13 @@ public class model  extends AsyncTask<Object, String, String> {
 		return null;
 	}
 
-	public interface OnResult {
-
-		void onSuccess(String result);
-
-		void onError(String error);
-	}
-
 	public void makeServiceCall() {
 		String response;
 		try {
 			URL url = new URL(reqURL);
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 			urlConnection.setRequestMethod("GET");
-			//read the response
 			InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-
 			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
 			StringBuilder stringBuilder = new StringBuilder();
 			String line;
@@ -89,7 +50,6 @@ public class model  extends AsyncTask<Object, String, String> {
                     callback.onError(e+"");
 				}
 			}
-
 			response = stringBuilder.toString();
 			callback.onSuccess(response);
 		} catch (MalformedURLException e) {
@@ -102,5 +62,10 @@ public class model  extends AsyncTask<Object, String, String> {
 			e.printStackTrace();
 			callback.onError(e+"");
 		}
+	}
+
+	public interface OnResult {
+		void onSuccess(String result);
+		void onError(String error);
 	}
 }

@@ -9,53 +9,34 @@ import java.util.Observable;
 
 public class UserVM extends Observable {
 
-	public ObservableField<String> name;
-	//private model model;
+    public ObservableField<String> response;
+    public ObservableInt isVisible;
+    public ObservableInt btnText;
 
-	public ObservableInt getIsVisible() {
-		return isVisible;
-	}
+    public UserVM() {
+        isVisible = new ObservableInt();
+        response = new ObservableField<String>();
+        //btn_text = Consume Api
+        btnText= new ObservableInt(R.string.btn_text);
+    }
 
-	public void setIsVisible(ObservableInt isVisible) {
-		this.isVisible = isVisible;
-	}
+    public void onButtonClick() {
+        isVisible.set(View.VISIBLE);
+        //url = http://cardfindercdmx.com/personal/get_book.php
+        new model().execute(BuildConfig.url, new model.OnResult() {
 
-	public ObservableInt isVisible;
+            @Override
+            public void onSuccess(String result) {
+                response.set(result);
+                isVisible.set(View.GONE);
+            }
 
-	public ObservableField<String> getName() {
-		return name;
-	}
-
-	public UserVM() {
-		//model = new model();
-		isVisible= new ObservableInt(View.GONE);
-	}
-
-	public void setName(ObservableField<String> name) {
-
-		this.name = name;
-	}
-
-	public void onButtonClick() {
-		isVisible.set(View.VISIBLE);
-		setIsVisible(isVisible);
-		//se cambia por new model ya que como el model contiene un hilo, al intentar dispararlo mas de una vez crasheara.
-		new model().execute("http://cardfindercdmx.com/personal/get_book.php",new model.OnResult() {
-
-			@Override
-			public void onSuccess(String result) {
-				name.set(result);
-				isVisible.set(View.GONE);
-				setIsVisible(isVisible);
-			}
-
-			@Override
-			public void onError(String error) {
-				name.set(error);
-				isVisible.set(View.GONE);
-				setIsVisible(isVisible);
-			}
-		});
-	}
+            @Override
+            public void onError(String error) {
+                response.set(error);
+                isVisible.set(View.GONE);
+            }
+        });
+    }
 
 }

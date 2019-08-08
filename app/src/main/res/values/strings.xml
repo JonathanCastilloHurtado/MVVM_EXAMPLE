@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MVVM_EXAMPLE</string>
+    <string name="default_text">Click the button bellow in order to start the Api\'s request</string>
+    <string name="btn_text">Consume Api</string>
 </resources>
