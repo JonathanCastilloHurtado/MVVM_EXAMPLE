@@ -23,7 +23,7 @@ public class UserVM extends Observable {
     public void onButtonClick() {
         isVisible.set(View.VISIBLE);
         //url = http://cardfindercdmx.com/personal/get_book.php
-        new model().execute(BuildConfig.url, new model.OnResult() {
+        new Model().execute(BuildConfig.url, new Model.OnResult() {
 
             @Override
             public void onSuccess(String result) {

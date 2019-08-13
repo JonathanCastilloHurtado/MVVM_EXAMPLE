@@ -12,7 +12,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 
-public class model  extends AsyncTask<Object, String, String> {
+public class Model extends AsyncTask<Object, String, String> {
 
 	private String reqURL;
 	private OnResult callback;
