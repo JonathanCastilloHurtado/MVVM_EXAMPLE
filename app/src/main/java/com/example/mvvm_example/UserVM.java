@@ -5,6 +5,8 @@ import android.view.View;
 import androidx.databinding.ObservableField;
 import androidx.databinding.ObservableInt;
 
+import com.example.mvvm_example.Model.Model;
+
 import java.util.Observable;
 
 public class UserVM extends Observable {
@@ -32,11 +34,14 @@ public class UserVM extends Observable {
             }
 
             @Override
-            public void onError(String error) {
-                response.set(error);
-                isVisible.set(View.GONE);
+            public void onError(Exception error) {
+               prepareError(error);
             }
         });
     }
 
+    public void prepareError(Exception error){
+        response.set(error.toString());
+        isVisible.set(View.GONE);
+    }
 }
