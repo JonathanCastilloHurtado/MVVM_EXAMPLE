@@ -18,6 +18,11 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
     private final String urlEndpoint = "personal/get_book.php";
     private OnResult callback;
 
+    public interface OnResult {
+        void onSuccess(String result);
+        void onError(Exception error);
+    }
+
     @Override
     protected NetworkResponse doInBackground(Object... objects) {
         reqURL = objects[0].toString() + urlEndpoint;
@@ -85,8 +90,4 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
         return response;
     }
 
-    public interface OnResult {
-        void onSuccess(String result);
-        void onError(Exception error);
-    }
 }
