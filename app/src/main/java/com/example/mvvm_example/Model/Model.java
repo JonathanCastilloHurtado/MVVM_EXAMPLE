@@ -13,9 +13,6 @@ import java.net.ProtocolException;
 import java.net.URL;
 
 public class Model extends AsyncTask<Object, String, NetworkResponse> {
-
-    private String reqURL;
-    private final String urlEndpoint = "personal/get_book.php";
     private OnResult callback;
 
     public interface OnResult {
@@ -25,10 +22,9 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
 
     @Override
     protected NetworkResponse doInBackground(Object... objects) {
-        reqURL = objects[0].toString() + urlEndpoint;
+        final String reqURL = objects[0].toString();
         callback = (OnResult) objects[1];
-
-        return makeServiceCall();
+        return makeServiceCall(reqURL);
     }
 
     @Override
@@ -45,7 +41,7 @@ public class Model extends AsyncTask<Object, String, NetworkResponse> {
         }
     }
 
-    public NetworkResponse makeServiceCall() {
+    public NetworkResponse makeServiceCall(String reqURL) {
         NetworkResponse response = new NetworkResponse();
         try {
             URL url = new URL(reqURL);

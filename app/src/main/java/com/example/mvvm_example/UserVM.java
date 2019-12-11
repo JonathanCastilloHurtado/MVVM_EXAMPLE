@@ -24,15 +24,14 @@ public class UserVM extends Observable {
 
     public void onButtonClick() {
         isVisible.set(View.VISIBLE);
-        //url = http://cardfindercdmx.com/personal/get_book.php
-        new Model().execute(BuildConfig.url, new Model.OnResult() {
-
+        final String urlEndpoint = "personal/get_book.php";
+        //url = http://cardfindercdmx.com/
+        new Model().execute(BuildConfig.url+urlEndpoint, new Model.OnResult() {
             @Override
             public void onSuccess(String result) {
                 response.set(result);
                 isVisible.set(View.GONE);
             }
-
             @Override
             public void onError(Exception error) {
                prepareError(error);
