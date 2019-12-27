@@ -24,8 +24,8 @@ public class UserVM extends Observable {
 
     public void onButtonClick() {
         isVisible.set(View.VISIBLE);
-        final String urlEndpoint = "personal/get_book.php";
-        //url = http://cardfindercdmx.com/
+        final String urlEndpoint = "apis/get_book.php";
+        //url = http://johncastle.com.mx/
         new Model().execute(BuildConfig.url+urlEndpoint, new Model.OnResult() {
             @Override
             public void onSuccess(String result) {
