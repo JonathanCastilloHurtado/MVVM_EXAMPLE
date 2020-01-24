@@ -1,5 +1,6 @@
 package com.example.mvvm_example
 
+import android.view.View
 import androidx.databinding.ObservableField
 import androidx.databinding.ObservableInt
 import androidx.lifecycle.ViewModel
@@ -7,17 +8,21 @@ import com.example.mvvm_example.Model.Model
 import com.example.mvvm_example.Model.Model.OnResult
 
 
-class UserVM(val btnText:ObservableInt = ObservableInt(R.string.btn_text)) : ViewModel() {
+class UserVM(val btnText:ObservableInt = ObservableInt(R.string.btn_text),
+             var isVisible :ObservableInt= ObservableInt(View.GONE) ) : ViewModel() {
 
     var response = ObservableField<String>()
+
+
+
     fun onButtonClick() {
-        //isVisible.set(View.VISIBLE)
+        isVisible.set(View.VISIBLE)
         val urlEndpoint = "apis/get_book.php"
         //url = http://johncastle.com.mx/
         Model().execute(BuildConfig.url + urlEndpoint, object : OnResult {
             override fun onSuccess(result: String?) {
                 response.set(result)
-               // isVisible.set(View.GONE)
+                isVisible.set(View.GONE)
             }
 
             override fun onError(error: Exception) {
@@ -28,6 +33,6 @@ class UserVM(val btnText:ObservableInt = ObservableInt(R.string.btn_text)) : Vie
 
     fun prepareError(error: Exception) {
         response.set(error.toString())
-        //isVisible.set(View.GONE)
+        isVisible.set(View.GONE)
     }
 }
