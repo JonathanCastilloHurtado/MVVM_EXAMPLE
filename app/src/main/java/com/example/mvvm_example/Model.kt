@@ -19,9 +19,7 @@ class Model: AsyncTask<Any, String, NetworkResponse>() {
 
     override fun onPostExecute(response: NetworkResponse?) {
     super.onPostExecute(response)
-
         if (response!!.isSuccess) {
-
             callback.onSuccess(response.message)
         } else {
             callback.onError(response.exception)
@@ -36,7 +34,6 @@ class Model: AsyncTask<Any, String, NetworkResponse>() {
     }
 
     fun makeServiceCall(reqURL: String?): NetworkResponse? {
-        //Log.e("JOHN",reqURL)
         val response = NetworkResponse()
         try {
             val url = URL(reqURL)
@@ -78,8 +75,6 @@ class Model: AsyncTask<Any, String, NetworkResponse>() {
             response.isSuccess = false
             response.exception = e
         }
-
-       // Log.e("JOHN",response.message.toString())
         return response
 
     }
