@@ -17,7 +17,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.btnText}" />
+            android:text="@{viewModel.btnText}"
+            android:onClick="@{() -> viewModel.onButtonClick()}"/>
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
