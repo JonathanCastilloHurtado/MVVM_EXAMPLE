@@ -30,9 +30,8 @@ class Model: AsyncTask<Any, String, NetworkResponse>() {
 
     override fun doInBackground(vararg objects: Any): NetworkResponse? {
         val reqURL = objects[0].toString()
+        //A difeencia de JAVA, el callback tiene que hacer la signacion del callback recibido.
          callback = objects[1] as OnResult
-
-
         return makeServiceCall(reqURL)
     }
 
